@@ -1,4 +1,4 @@
-package conexiondb1;
+//package conexiondb1;
 import java.sql.*;
 import javax.swing.JOptionPane;
 public class ConexionDB1 {
@@ -10,18 +10,19 @@ public class ConexionDB1 {
     // para acceder y consultar la base de datos 
     private Connection connection;
     private Statement statement;
+    private String salida;
     // Constructor que se conecta a la base de datos , consulta, procesa resultados y los muestra 
     public ConexionDB1() {
         try {
             // load database driver class
             Class.forName(JDBC_DRIVER);
             // Se establece la conexión a la base de datos 
-            connection = (Connection) DriverManager.getConnection(DATABASE_URL, "root", "root");
+            connection = (Connection) DriverManager.getConnection(DATABASE_URL, "root", "olroa123");
             // crear una Sentencia (Statement) de SQL
             statement = (Statement) connection.createStatement();
             // Se consulta la base de datos 
             ResultSet resultSet
-                    = statement.executeQuery("SELECT * FROM empleado");
+                    = statement.executeQuery("select * from empleado");
 
             // Se procesan los resultados de la consulta de la base de datos 
             StringBuffer results = new StringBuffer();
@@ -42,12 +43,12 @@ public class ConexionDB1 {
         } // detecta los problemass interactuando con la base de datos (database)
         catch (SQLException sqlException) {
             JOptionPane.showMessageDialog(null, sqlException.getMessage(),
-                    "Database Error", JOptionPane.ERROR_MESSAGE);
+                    "Error de base de datos ", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         } // detecta los problemass cargando el Driver de conexión con la base de datos
         catch (ClassNotFoundException classNotFound) {
             JOptionPane.showMessageDialog(null, classNotFound.getMessage(),
-                    "Driver Not Found", JOptionPane.ERROR_MESSAGE);
+                    "No encuentra el Driver ", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
         } // Asegurar statement y conexión (connection) son cerradas
         finally {
