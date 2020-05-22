@@ -8,6 +8,7 @@ public class RelojThread extends Thread{
   private JTextField txtReloj;
   public RelojThread(JTextField txtReloj) {
     this.txtReloj = txtReloj;
+    /*change local, color green,  */
   }
    RelojThread() {
         throw new UnsupportedOperationException("Not supported yet."); 
